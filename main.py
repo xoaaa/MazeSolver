@@ -2,7 +2,6 @@ import pygame
 import random
 import sys
 
-
 BACKGROUND_COLOR = (255,192,203)
 GRID_LINE_COLOR = (50,50,80)
 GRID_LINE_THICKNESS = 2 
@@ -69,7 +68,6 @@ def scene_intro():
 
         pygame.display.flip()
 
-
 def scene_tutorial():
     screen = pygame.display.set_mode((800,800))
     pygame.display.set_caption("Maze Solver - Tutorial")
@@ -81,7 +79,7 @@ def scene_tutorial():
     cont = pygame.transform.scale(cont, (220,80))
     cont_rect = cont.get_rect(center=(400,700))
 
-    while True:
+    while True: 
         screen.blit(bg,(0,0))
         screen.blit(cont,cont_rect)
 
@@ -91,7 +89,7 @@ def scene_tutorial():
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if cont_rect.collidepoint(pygame.mouse.get_pos()):
                     return "SCENE_GAME"
-
+                
         pygame.display.flip()
 
 class CoOrdinates():
@@ -138,7 +136,6 @@ class CoOrdinates():
                 wall = (random.randint(0, gui.grid_size-1), random.randint(0, gui.grid_size-1))
                 if wall not in self.walls:
                     self.walls.append(wall)
-
 
 class Gui():
     FPS = 60
@@ -233,8 +230,6 @@ class Gui():
                 GRID_LINE_THICKNESS
             )
 
-
-
     def draw_points(self):
         for node in self.coords.open_list: self.draw_box(node.position,(0,255,0))
         for node in self.coords.closed_list: self.draw_box(node.position,(0,0,255))
@@ -305,7 +300,6 @@ class Gui():
         rect = surf.get_rect(center=center)
         self.win.blit(surf,rect)
 
-
 class Node:
     def __init__(self,parent,pos):
         self.parent=parent
@@ -314,7 +308,6 @@ class Node:
 
     def __eq__(self,other):
         return self.position==other.position
-
 
 def pathfind(maze,start,end,gui,coords,key):
     start_node=Node(None,start); end_node=Node(None,end)
